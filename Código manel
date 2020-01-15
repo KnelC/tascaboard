@@ -1,0 +1,64 @@
+
+//FUNÇÃO SORT TABLE
+<script>
+function sortscoretable(col){
+    
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("tablescores");
+    switching = true;
+    while (switching) {
+        
+        switching = false;
+        rows = table.rows;
+        
+        for (i = 1; i < (rows.length - 1); i++) {
+          shouldSwitch = false;
+          x = rows[i].getElementsByTagName("TD")[col];
+          y = rows[i + 1].getElementsByTagName("TD")[col];
+         
+          if(col != 0){
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+          }
+          else if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                  }
+          
+        }
+        if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+        }
+      }
+    
+}
+</script>
+
+
+
+//PARA METER NAS TAGS
+<table id='tablescores'>
+<th onclick='sortscoretable(I);'>
+
+//PARA PÔR FICHEIRO CSS
+
+var server = http.createServer(function (request, response) {
+    switch (request.url) {
+        case "/AppClientStyle.css" :
+            response.writeHead(200, {"Content-Type": "text/css"});
+            response.write(cssFile);
+            break;
+        default :    
+            //MERDA QUE JÁ TENS
+    });
+    response.end();
+}
+
+
+(NO HEADER):
+<link rel="stylesheet" href="AppClientStyle.css">
+
+
