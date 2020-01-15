@@ -16,22 +16,23 @@ const server = http.createServer((req, res) => {
 	function acabarStuff(){
 			res.write('<style> table {font-family: arial, sans-serif;border-collapse: collapse;width: 100%;}td, th {border: 1px solid #dddddd;text-align: left;padding: 8px;}tr:nth-child(even) {background-color: #dddddd;}</style>')
 			res.write('<table>')
+			res.write("<tr><th>Username</th><th>Rank</th><th>LP</th><th>Wins</th><th>Losses</th><th>Winrate</th></tr>")
 			for(var i = 0; i<containerTasca.length;i++){
-
+			
 				for(var j = 0; j < containerTasca[i].length;j++){
 					res.write("<tr>")
 					if(containerTasca[i][j].queueType== "RANKED_SOLO_5x5"){
 
-						res.write("<td> Username: "+containerTasca[i][j].summonerName+"</td>")
-						res.write("<td> RANK: "+containerTasca[i][j].tier+" "+containerTasca[i][j].rank+"</td>")
-						res.write("<td> LP: "+containerTasca[i][j].leaguePoints+"</td>")
-						res.write("<td> WINS: "+containerTasca[i][j].wins+"</td>")
-						res.write("<td> LOSES: "+containerTasca[i][j].losses+"</td>")
+						res.write("<td>"+containerTasca[i][j].summonerName+"</td>")
+						res.write("<td>"+containerTasca[i][j].tier+" "+containerTasca[i][j].rank+"</td>")
+						res.write("<td>"+containerTasca[i][j].leaguePoints+"</td>")
+						res.write("<td>"+containerTasca[i][j].wins+"</td>")
+						res.write("<td>"+containerTasca[i][j].losses+"</td>")
 						//res.write("HOTSTREAK: "+ containerTasca[i][j].hotstreak)
 						total = parseFloat(containerTasca[i][j].wins+containerTasca[i][j].losses)
 						winrateaux = parseFloat(containerTasca[i][j].wins/total)
 						winrate = winrateaux * 100
-						res.write("<td> WINRATE: "+winrate.toFixed(2)+"% </td>")
+						res.write("<td>"+winrate.toFixed(2)+"% </td>")
 						
 								}
 					res.write("</tr>")
